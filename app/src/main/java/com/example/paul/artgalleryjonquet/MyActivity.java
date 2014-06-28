@@ -1,9 +1,16 @@
 package com.example.paul.artgalleryjonquet;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+
+import java.net.URL;
 
 
 public class MyActivity extends ActionBarActivity {
@@ -12,6 +19,26 @@ public class MyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        ArtGallery artGallery = new ArtGallery();
+        artGallery.DownloadGallery("http://sandbox.artfavo.com/recruiting/api/v0.3.1/gallery");
+
+        ListView imageList = (ListView) findViewById(R.id.image_list);
+
+        for (String path : artGallery.imagePaths){
+
+            try{
+                URL url = new URL(path);
+                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+
+                ImageView imgv = new ImageView(this);
+
+                imgv.setImageBitmap(bmp);
+                imageList.addView(imgv);
+            }catch(Exception e){
+                ;
+            }
+        }
     }
 
 
