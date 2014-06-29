@@ -2,6 +2,7 @@ package com.example.paul.artgalleryjonquet;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -22,6 +24,10 @@ public class MyActivity extends ActionBarActivity {
     private ArtGallery artGallery;
     private ListView imageList;
 
+    private ProgressBar mProgressBar;
+
+    private DownloadGalleryAsync downloadTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +36,16 @@ public class MyActivity extends ActionBarActivity {
         artGallery = new ArtGallery();
         imageList = (ListView) findViewById(R.id.image_list);
 
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+
         adapter = new GalleryAdapter(this, artGallery.images);
         imageList.setAdapter(adapter);
     }
 
     public void onRefreshClicked(View v) {
-        adapter.clear();
-        artGallery.DownloadGallery("http://sandbox.artfavo.com/recruiting/api/v0.3.1/gallery");
-        adapter.notifyDataSetChanged();
-}
+        downloadTask = new DownloadGalleryAsync();
+        downloadTask.execute();
+    }
 
 
     @Override
@@ -58,5 +65,33 @@ public class MyActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class DownloadGalleryAsync extends AsyncTask<Void, Integer, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            adapter.clear();
+            //Toast.makeText(getApplicationContext(), "Début du traitement asynchrone", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values){
+            super.onProgressUpdate(values);
+            mProgressBar.setProgress(values[0]);
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            artGallery.DownloadGallery("http://sandbox.artfavo.com/recruiting/api/v0.3.1/gallery");
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            adapter.notifyDataSetChanged();
+            //Toast.makeText(getApplicationContext(), "Le traitement asynchrone est terminé", Toast.LENGTH_LONG).show();
+        }
     }
 }

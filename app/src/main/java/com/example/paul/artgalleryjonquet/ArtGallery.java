@@ -3,9 +3,11 @@ package com.example.paul.artgalleryjonquet;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.EventLog;
 import android.view.ViewParent;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
