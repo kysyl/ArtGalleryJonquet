@@ -4,6 +4,6 @@
     <string name="app_name">ArtGalleryJonquet</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="get_image">Get Image</string>
+    <string name="get_image">Refresh</string>
 
 </resources>

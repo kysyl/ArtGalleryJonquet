@@ -1,5 +1,7 @@
 package com.example.paul.artgalleryjonquet;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.EventLog;
 import android.view.ViewParent;
@@ -35,10 +37,10 @@ public class ArtGallery {
     public String city;
     public String twitter;
 
-    public ArrayList<String> imagePaths;
+    public ArrayList<Bitmap> images;
 
     public ArtGallery() {
-        imagePaths = new ArrayList<String>();
+        images = new ArrayList<Bitmap>();
     }
 
     public boolean DownloadGallery(String url){
@@ -59,11 +61,16 @@ public class ArtGallery {
                 this.name = data.getString("name");
                 this.description = data.getString("description_en");
 
+                images.clear();
+
                 boolean loop = true;
                 int i = 1;
                 while (loop) {
                     try{
-                        imagePaths.add(data.getString("photo" + i));
+                        URL url_img = new URL(data.getString("photo" + i));
+                        Bitmap bmp = BitmapFactory.decodeStream(url_img.openConnection().getInputStream());
+                        images.add(bmp);
+                        //imagePaths.add(data.getString("photo" + i));
                         i++;
                     }
                     catch (Exception e){

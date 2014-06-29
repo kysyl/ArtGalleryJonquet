@@ -6,8 +6,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import java.net.URL;
@@ -15,31 +18,27 @@ import java.net.URL;
 
 public class MyActivity extends ActionBarActivity {
 
+    private GalleryAdapter adapter;
+    private ArtGallery artGallery;
+    private ListView imageList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        ArtGallery artGallery = new ArtGallery();
-        artGallery.DownloadGallery("http://sandbox.artfavo.com/recruiting/api/v0.3.1/gallery");
+        artGallery = new ArtGallery();
+        imageList = (ListView) findViewById(R.id.image_list);
 
-        ListView imageList = (ListView) findViewById(R.id.image_list);
-
-        for (String path : artGallery.imagePaths){
-
-            try{
-                URL url = new URL(path);
-                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
-                ImageView imgv = new ImageView(this);
-
-                imgv.setImageBitmap(bmp);
-                imageList.addView(imgv);
-            }catch(Exception e){
-                ;
-            }
-        }
+        adapter = new GalleryAdapter(this, artGallery.images);
+        imageList.setAdapter(adapter);
     }
+
+    public void onRefreshClicked(View v) {
+        adapter.clear();
+        artGallery.DownloadGallery("http://sandbox.artfavo.com/recruiting/api/v0.3.1/gallery");
+        adapter.notifyDataSetChanged();
+}
 
 
     @Override
