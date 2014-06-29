@@ -90,8 +90,16 @@ public class MyActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            TextView addressView = (TextView) findViewById(R.id.address);
+            addressView.setText(artGallery.address);
+            adapter.notifyDataSetChanged();
+
+            TextView countryView = (TextView) findViewById(R.id.country);
+            countryView.setText(artGallery.country);
             adapter.notifyDataSetChanged();
             //Toast.makeText(getApplicationContext(), "Le traitement asynchrone est terminé", Toast.LENGTH_LONG).show();
         }
     }
+
+
 }

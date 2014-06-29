@@ -62,6 +62,9 @@ public class ArtGallery {
                 JSONObject data = sandbox.getJSONObject("data");
                 this.name = data.getString("name");
                 this.description = data.getString("description_en");
+                this.address = data.getString("address");
+                this.city = data.getString("city");
+                this.country = data.getString("country");
 
                 images.clear();
 
