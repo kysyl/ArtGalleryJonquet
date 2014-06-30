@@ -1,28 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/listimage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MyActivity"
     android:weightSum="1"
-    android:id="@+id/listimage">
+    tools:context=".MyActivity">
 
     <LinearLayout
-        android:layout_weight="0.5"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:orientation="horizontal">
 
 
         <ListView
             android:id="@+id/image_list"
-            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_height="fill_parent"
+            android:orientation="vertical"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -32,10 +32,11 @@
     </LinearLayout>
 
     <ScrollView
-        android:layout_weight="0.4"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:orientation="vertical">
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        >
 
     <LinearLayout
 
@@ -43,19 +44,21 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <TextView
+    <TextView
+            android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"/>
 
 
 
 
         <TextView
+            android:id="@+id/address"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:id="@+id/address"/>
+            android:layout_height="wrap_content"/>
 
 
 
@@ -63,12 +66,13 @@
 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/city"
                 android:gravity="center"/>
 
             <TextView
@@ -78,37 +82,37 @@
 
 
             <TextView
-                android:gravity="right"
+                android:id="@+id/country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/country"/>
+                android:gravity="right"/>
 
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/description"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/description"/>
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:layout_weight="0.1"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:layout_weight="0.1"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/Refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/get_image"
             android:layout_gravity="center_horizontal"
-            android:onClick="onRefreshClicked"/>
+            android:onClick="onRefreshClicked"
+            android:text="@string/get_image"/>
     </LinearLayout>
 
 
