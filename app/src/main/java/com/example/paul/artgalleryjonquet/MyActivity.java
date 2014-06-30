@@ -1,13 +1,13 @@
 package com.example.paul.artgalleryjonquet;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,12 +40,29 @@ public class MyActivity extends ActionBarActivity {
 
         adapter = new GalleryAdapter(this, artGallery.images);
         imageList.setAdapter(adapter);
+
+
+        /*imageList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView parentView, View childView,
+                                       int position, long id) {
+                ImageView imgGal = (ImageView) findViewById(R.id.imgGal);
+
+            }
+
+            public void onNothingSelected(AdapterView parentView) {
+
+            }
+        });*/
+
+
     }
 
     public void onRefreshClicked(View v) {
         downloadTask = new DownloadGalleryAsync();
         downloadTask.execute();
     }
+
+
 
 
     @Override
@@ -73,7 +90,6 @@ public class MyActivity extends ActionBarActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             adapter.clear();
-            //Toast.makeText(getApplicationContext(), "Début du traitement asynchrone", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -97,7 +113,7 @@ public class MyActivity extends ActionBarActivity {
             TextView countryView = (TextView) findViewById(R.id.country);
             countryView.setText(artGallery.country);
             adapter.notifyDataSetChanged();
-            //Toast.makeText(getApplicationContext(), "Le traitement asynchrone est terminé", Toast.LENGTH_LONG).show();
+
         }
     }
 

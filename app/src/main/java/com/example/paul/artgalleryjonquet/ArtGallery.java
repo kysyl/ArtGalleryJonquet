@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.EventLog;
+import android.view.View;
 import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -92,6 +93,22 @@ public class ArtGallery {
         }
 
         return true;
+    }
+
+    class imageViewClickListener implements View.OnClickListener {
+        int position;
+
+        public imageViewClickListener(int pos) {
+            this.position = pos;
+        }
+
+        public void onClick(View v) {
+            {// you can write the code what happens for the that click and
+                // you will get the selected row index in position
+
+
+            }
+        }
     }
 
 }
