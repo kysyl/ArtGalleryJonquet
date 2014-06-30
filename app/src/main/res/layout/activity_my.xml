@@ -12,7 +12,7 @@
     android:id="@+id/listimage">
 
     <LinearLayout
-        android:layout_weight="0.6"
+        android:layout_weight="0.5"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
@@ -31,10 +31,16 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_weight="0.3"
+    <ScrollView
+        android:layout_weight="0.4"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical">
 
         <TextView
@@ -42,19 +48,43 @@
             android:layout_height="wrap_content"
             android:id="@+id/name"/>
 
+
+
+
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:id="@+id/address"/>
-        <TextView
+
+
+
+        <LinearLayout
+
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/country"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/city"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/city"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tex"/>
+
+
+            <TextView
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/country"/>
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="fill_parent"
@@ -63,6 +93,7 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_weight="0.1"

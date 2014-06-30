@@ -106,13 +106,25 @@ public class MyActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            TextView nameView = (TextView) findViewById(R.id.name);
+            nameView.setText(artGallery.name);
+
+            TextView cityView = (TextView) findViewById(R.id.city);
+            cityView.setText(artGallery.city);
+
             TextView addressView = (TextView) findViewById(R.id.address);
             addressView.setText(artGallery.address);
-            adapter.notifyDataSetChanged();
+
+
 
             TextView countryView = (TextView) findViewById(R.id.country);
             countryView.setText(artGallery.country);
+
+
+            TextView descriptionView = (TextView) findViewById(R.id.description);
+            descriptionView.setText(artGallery.description);
             adapter.notifyDataSetChanged();
+
 
         }
     }
